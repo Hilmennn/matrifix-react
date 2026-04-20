@@ -1,0 +1,29 @@
+.process-request-role-message {
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  background: var(--surface-elevated);
+  color: var(--text-secondary);
+  min-height: 280px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 24px;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+:root[data-theme='dark'] .process-request-role-message {
+  background: #151515;
+  color: var(--text-secondary);
+}
+
+.process-request-table {
+  min-width: 1520px;
+}
+
+@media (max-width: 900px) {
+  .process-request-role-message {
+    min-height: 220px;
+    font-size: 18px;
+  }
+}

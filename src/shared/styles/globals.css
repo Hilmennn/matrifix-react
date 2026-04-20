@@ -1,0 +1,162 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+:root {
+  --ui-zoom: 0.8;
+  font-family: "Poppins", system-ui, -apple-system, sans-serif;
+  color: #1f2937;
+  background-color: #eef3f0;
+  --app-bg: #eef3f0;
+  --surface-bg: #ffffff;
+  --surface-muted: #f7faf8;
+  --surface-elevated: #ffffff;
+  --text-primary: #1f2937;
+  --text-secondary: #64748b;
+  --text-strong: #17382b;
+  --border-color: #dde6e1;
+  --sidebar-bg: #113a2c;
+  --sidebar-card-bg: rgba(17, 58, 44, 0.98);
+  --sidebar-card-border: rgba(255, 255, 255, 0.14);
+  --sidebar-card-border-hover: rgba(255, 255, 255, 0.22);
+  --sidebar-link: rgba(255, 255, 255, 0.72);
+  --sidebar-link-border: rgba(255, 255, 255, 0.1);
+  --sidebar-link-active: #ffffff;
+  --sidebar-profile-role: #b7bdc9;
+  --sidebar-trigger-hover: #2a2f38;
+  --menu-bg: #ffffff;
+  --menu-border: #d9dfe7;
+  --menu-hover: #f7f8fa;
+  --menu-avatar-bg: #eef2ff;
+  --menu-avatar-text: #111827;
+  --button-bg: #113a2c;
+  --button-bg-hover: #0b2a1f;
+  --button-text: #ffffff;
+  --topbar-bg: #ffffff;
+  --theme-toggle-bg: transparent;
+  --theme-toggle-bg-hover: rgba(17, 58, 44, 0.08);
+  --theme-toggle-border: transparent;
+}
+
+:root[data-theme='dark'] {
+  color: #e5eef5;
+  background-color: #0a0a0a;
+  --app-bg: #0a0a0a;
+  --surface-bg: #111111;
+  --surface-muted: #151515;
+  --surface-elevated: #161616;
+  --text-primary: #e5eef5;
+  --text-secondary: #9db0c2;
+  --text-strong: #f4fbff;
+  --border-color: #262626;
+  --sidebar-bg: #113a2c;
+  --sidebar-card-bg: rgba(17, 58, 44, 0.98);
+  --sidebar-card-border: rgba(255, 255, 255, 0.14);
+  --sidebar-card-border-hover: rgba(255, 255, 255, 0.22);
+  --sidebar-link: rgba(255, 255, 255, 0.72);
+  --sidebar-link-border: rgba(255, 255, 255, 0.1);
+  --sidebar-link-active: #ffffff;
+  --sidebar-profile-role: #b7bdc9;
+  --sidebar-trigger-hover: #2a2f38;
+  --menu-bg: #151515;
+  --menu-border: #2a2a2a;
+  --menu-hover: #1f1f1f;
+  --menu-avatar-bg: #202020;
+  --menu-avatar-text: #f4fbff;
+  --button-bg: #1f8f63;
+  --button-bg-hover: #186d4c;
+  --button-text: #f8fffc;
+  --topbar-bg: #111111;
+  --theme-toggle-bg: transparent;
+  --theme-toggle-bg-hover: rgba(143, 223, 188, 0.1);
+  --theme-toggle-border: transparent;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: calc(100vh / var(--ui-zoom));
+  min-height: calc(100vh / var(--ui-zoom));
+}
+
+html {
+  zoom: var(--ui-zoom);
+}
+
+body {
+  margin: 0;
+  background-color: var(--app-bg);
+  color: var(--text-primary);
+  font-family: "Poppins", system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+#root {
+  background: var(--app-bg);
+  color: var(--text-primary);
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+:root[data-theme='dark'] .app-layout-content {
+  background:
+    radial-gradient(circle at top right, rgba(31, 143, 99, 0.08), transparent 22%),
+    linear-gradient(180deg, #101010 0%, #0a0a0a 100%);
+  color: var(--text-primary);
+}
+
+:root[data-theme='dark'] .app-layout-content :where(h1, h2, h3, h4, h5, h6, p, span, label, strong, small) {
+  color: inherit;
+}
+
+:root[data-theme='dark'] .app-layout-content :where(input, select, textarea) {
+  background: #111111;
+  color: var(--text-primary);
+  border-color: var(--border-color);
+}
+
+:root[data-theme='dark'] .app-layout-content :where(table, thead, tbody, tr, th, td) {
+  color: var(--text-primary);
+  border-color: var(--border-color);
+}
+
+:root[data-theme='dark'] .app-layout-content :where(
+  [class*='card'],
+  [class*='panel'],
+  [class*='table'],
+  [class*='widget'],
+  [class*='modal'],
+  [class*='content']
+) {
+  border-color: var(--border-color);
+}
+
+@supports not (zoom: 0.67) {
+  html {
+    transform: scale(var(--ui-zoom));
+    transform-origin: top left;
+    width: calc(100% / var(--ui-zoom));
+  }
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}

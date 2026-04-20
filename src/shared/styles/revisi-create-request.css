@@ -1,0 +1,219 @@
+.create-request-page {
+  display: flex;
+  flex-direction: column;
+}
+
+.create-request-card {
+  background: var(--surface-elevated);
+  border: 1px solid var(--border-color);
+  border-radius: 18px;
+  padding: 24px 26px;
+  box-shadow: 0 12px 28px rgba(16, 35, 27, 0.08);
+}
+
+.create-request-head h2 {
+  margin: 0;
+  font-size: 28px;
+  color: var(--text-strong);
+}
+
+.create-request-head p {
+  margin: 8px 0 0;
+  color: var(--text-secondary);
+  font-size: 15px;
+}
+
+.create-request-meta,
+.create-request-success,
+.create-request-error {
+  margin: 16px 0 0;
+  font-size: 14px;
+}
+
+.create-request-meta {
+  color: var(--text-secondary);
+}
+
+.create-request-success {
+  color: #15803d;
+  font-weight: 600;
+}
+
+.create-request-error {
+  color: #b42318;
+  font-weight: 600;
+}
+
+.create-request-form {
+  margin-top: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.create-request-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px 20px;
+}
+
+.create-request-field {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.create-request-field span {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-strong);
+}
+
+.create-request-field input,
+.create-request-field select,
+.create-request-field textarea {
+  width: 100%;
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  padding: 12px 14px;
+  background: var(--surface-bg);
+  color: var(--text-primary);
+  outline: none;
+}
+
+.create-request-field textarea {
+  min-height: 220px;
+  resize: vertical;
+}
+
+.create-request-field input:focus,
+.create-request-field select:focus,
+.create-request-field textarea:focus {
+  border-color: #1a4333;
+  box-shadow: 0 0 0 3px rgba(26, 67, 51, 0.12);
+}
+
+.create-request-template-link {
+  align-self: flex-start;
+  color: #15803d;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.create-request-template-link:hover {
+  text-decoration: underline;
+}
+
+.create-request-dropzone {
+  border: 2px dashed var(--border-color);
+  border-radius: 16px;
+  background: var(--surface-muted);
+  color: var(--text-secondary);
+  padding: 24px 18px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.create-request-dropzone:hover {
+  border-color: #1a4333;
+  background: rgba(26, 67, 51, 0.04);
+}
+
+.create-request-dropzone.is-disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.create-request-documents {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.create-request-document-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+}
+
+.create-request-document-file {
+  min-width: 0;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.create-request-remove {
+  border: 0;
+  border-radius: 10px;
+  padding: 10px 12px;
+  background: #ef4444;
+  color: #fff;
+  cursor: pointer;
+}
+
+.create-request-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.create-request-save,
+.create-request-back {
+  border: 0;
+  border-radius: 12px;
+  padding: 12px 20px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.create-request-save {
+  background: #188843;
+  color: #fff;
+}
+
+.create-request-back {
+  background: #6b7280;
+  color: #fff;
+}
+
+.create-request-save:disabled,
+.create-request-back:disabled,
+.create-request-remove:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+:root[data-theme='dark'] .create-request-card {
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.22);
+}
+
+:root[data-theme='dark'] .create-request-dropzone {
+  background: #151515;
+}
+
+:root[data-theme='dark'] .create-request-dropzone:hover {
+  background: #1b1b1b;
+}
+
+@media (max-width: 900px) {
+  .create-request-card {
+    padding: 18px;
+  }
+
+  .create-request-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .create-request-document-row {
+    grid-template-columns: 1fr;
+  }
+
+  .create-request-actions {
+    flex-direction: column;
+  }
+}

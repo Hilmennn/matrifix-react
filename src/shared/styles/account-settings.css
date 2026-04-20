@@ -1,0 +1,248 @@
+.account-settings-page {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.account-settings-head h2 {
+  margin: 0;
+  font-size: 24px;
+  color: var(--text-strong);
+}
+
+.account-settings-head p {
+  margin: 6px 0 0;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.account-settings-layout {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 22px;
+  align-items: start;
+}
+
+.account-settings-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.account-settings-nav-item {
+  display: block;
+  border: 0;
+  border-radius: 14px;
+  background: transparent;
+  color: var(--text-primary);
+  text-align: left;
+  padding: 12px 16px;
+  font-size: 16px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.account-settings-nav-item:hover,
+.account-settings-nav-item:focus,
+.account-settings-nav-item:focus-visible,
+.account-settings-nav-item:active,
+.account-settings-nav-item:visited {
+  text-decoration: none;
+}
+
+.account-settings-nav-item.is-active {
+  background: rgba(15, 23, 42, 0.06);
+}
+
+.account-settings-content {
+  display: block;
+}
+
+.account-settings-main {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.account-password-card {
+  max-width: 760px;
+}
+
+.account-card {
+  background: var(--surface-elevated);
+  border: 1px solid var(--border-color);
+  border-radius: 22px;
+  padding: 24px 26px;
+  box-shadow: 0 14px 28px rgba(15, 23, 42, 0.06);
+}
+
+.account-card h3 {
+  margin: 0;
+  font-size: 19px;
+  color: var(--text-strong);
+}
+
+.account-card > p {
+  margin: 4px 0 0;
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.account-field {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.account-card .account-field {
+  margin-top: 0;
+}
+
+.account-profile-grid {
+  margin-top: 22px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px 20px;
+}
+
+.account-field span {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-strong);
+}
+
+.account-field input {
+  width: 100%;
+  height: 46px;
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  padding: 0 16px;
+  background: var(--surface-bg);
+  color: var(--text-primary);
+  outline: none;
+}
+
+.account-update-btn {
+  margin-top: 22px;
+  border: 0;
+  border-radius: 14px;
+  background: #22a652;
+  color: #fff;
+  padding: 12px 20px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.account-password-notice {
+  margin: 16px 0 0;
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.account-password-strength {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.account-password-strength-bar {
+  width: 100%;
+  height: 10px;
+  border-radius: 999px;
+  background: #e5e7eb;
+  overflow: hidden;
+}
+
+.account-password-strength-fill {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.2s ease, background-color 0.2s ease;
+}
+
+.account-password-strength-fill.is-empty,
+.account-password-strength-fill.is-weak {
+  background: #ff3b3b;
+}
+
+.account-password-strength-fill.is-fair {
+  background: #f59e0b;
+}
+
+.account-password-strength-fill.is-good {
+  background: #22a652;
+}
+
+.account-password-strength-fill.is-strong {
+  background: #15803d;
+}
+
+.account-password-strength strong {
+  font-size: 14px;
+  color: var(--text-strong);
+}
+
+.account-password-hints {
+  margin: 0;
+  padding-left: 20px;
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.account-password-hints li + li {
+  margin-top: 4px;
+}
+
+.account-password-note-box {
+  margin-top: 8px;
+  border-radius: 14px;
+  background: #fff8d8;
+  color: #9a6400;
+  padding: 16px 18px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.account-password-note-box ul {
+  margin: 8px 0 0;
+  padding-left: 20px;
+}
+
+.account-role-chip-wrap {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.account-role-label {
+  color: var(--text-strong);
+  font-weight: 600;
+}
+
+.account-role-chip {
+  align-self: flex-start;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.06);
+  color: var(--text-primary);
+  font-size: 14px;
+}
+
+@media (max-width: 980px) {
+  .account-settings-layout,
+  .account-settings-content {
+    grid-template-columns: 1fr;
+  }
+
+  .account-settings-nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .account-profile-grid {
+    grid-template-columns: 1fr;
+  }
+}

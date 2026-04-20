@@ -1,0 +1,244 @@
+.user-page {
+  display: grid;
+  gap: 16px;
+  padding: 18px;
+  border-radius: 20px;
+  background: var(--card-bg, #ffffff);
+  border: 1px solid var(--card-border, #dce8e2);
+  box-shadow: var(--card-shadow, 0 16px 32px rgba(17, 58, 44, 0.08));
+}
+
+.user-page__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.user-page__title {
+  margin: 0;
+  font-size: 2rem;
+  line-height: 1.1;
+  color: var(--text-strong, #12392b);
+}
+
+.user-page__text {
+  margin: 8px 0 0;
+  color: var(--text-muted, #5d7067);
+}
+
+.user-page__filters {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) repeat(2, minmax(220px, 0.7fr));
+  gap: 12px;
+}
+
+.user-page__input {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid var(--border-color, #d5e3dc);
+  background: var(--panel-bg, #f8fcfa);
+  color: var(--text-color, #173f2f);
+  font: inherit;
+}
+
+.user-page__input:focus {
+  outline: none;
+  border-color: #1d8f63;
+  box-shadow: 0 0 0 4px rgba(29, 143, 99, 0.12);
+}
+
+.user-page__input[readonly] {
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+.user-page__primary-button,
+.user-form__ghost-button,
+.user-table__button {
+  border: none;
+  border-radius: 12px;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+}
+
+.user-page__primary-button {
+  min-height: 46px;
+  padding: 0 18px;
+  background: linear-gradient(135deg, #0f6f4d 0%, #1d8f63 100%);
+  color: #ffffff;
+  box-shadow: 0 12px 24px rgba(15, 111, 77, 0.24);
+}
+
+.user-form__ghost-button {
+  min-height: 40px;
+  padding: 0 14px;
+  background: rgba(17, 58, 44, 0.08);
+  color: var(--text-strong, #12392b);
+}
+
+.user-page__primary-button:hover,
+.user-form__ghost-button:hover,
+.user-table__button:hover {
+  transform: translateY(-1px);
+}
+
+.user-page__primary-button:disabled,
+.user-form__ghost-button:disabled,
+.user-table__button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.user-form {
+  display: grid;
+  gap: 16px;
+  padding: 18px;
+  border-radius: 18px;
+  background: var(--panel-bg, #f7fbf9);
+  border: 1px solid var(--border-color, #d5e3dc);
+}
+
+.user-form__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.user-form__title {
+  margin: 0;
+  font-size: 1.2rem;
+  color: var(--text-strong, #12392b);
+}
+
+.user-form__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px 16px;
+}
+
+.user-form__field {
+  display: grid;
+  gap: 8px;
+  color: var(--text-strong, #12392b);
+  font-weight: 600;
+}
+
+.user-form__actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.user-form__hint {
+  display: grid;
+  gap: 4px;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: var(--text-muted, #5d7067);
+  font-weight: 500;
+}
+
+.user-page__meta,
+.user-page__warning,
+.user-page__success,
+.user-page__error {
+  margin: 0;
+  padding: 12px 14px;
+  border-radius: 14px;
+}
+
+.user-page__meta {
+  color: var(--text-muted, #5d7067);
+  background: rgba(17, 58, 44, 0.04);
+}
+
+.user-page__warning {
+  color: #8a5a00;
+  background: #fff3d8;
+}
+
+.user-page__success {
+  color: #0d6b43;
+  background: #e1f6ea;
+}
+
+.user-page__error,
+.user-page__field-error {
+  color: #b3261e;
+}
+
+.user-page__error {
+  background: #fde8e7;
+}
+
+.user-page__field-error {
+  font-size: 0.82rem;
+  font-weight: 500;
+}
+
+.user-table-wrap {
+  overflow: auto;
+  border-radius: 18px;
+  border: 1px solid var(--border-color, #d5e3dc);
+}
+
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 880px;
+  background: var(--card-bg, #ffffff);
+}
+
+.user-table th,
+.user-table td {
+  padding: 14px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color, #d5e3dc);
+  vertical-align: middle;
+}
+
+.user-table th {
+  color: var(--text-strong, #12392b);
+  font-size: 0.96rem;
+}
+
+.user-table td {
+  color: var(--text-color, #173f2f);
+}
+
+.user-table__actions {
+  display: flex;
+  gap: 8px;
+}
+
+.user-table__button {
+  min-height: 36px;
+  padding: 0 12px;
+  color: #ffffff;
+}
+
+.user-table__button.is-edit {
+  background: #1d8f63;
+}
+
+.user-table__button.is-delete {
+  background: #d64545;
+}
+
+@media (max-width: 960px) {
+  .user-page__header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .user-page__filters,
+  .user-form__grid {
+    grid-template-columns: 1fr;
+  }
+}
