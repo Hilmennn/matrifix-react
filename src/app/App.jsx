@@ -26,7 +26,7 @@ import {
   parseStoredUser
 } from '../shared/layout/navigation';
 import { normalizeRole } from '../shared/lib/roles';
-import { getUnauthorizedEventName } from '../shared/lib/api';
+import { clearAuthToken, getUnauthorizedEventName } from '../shared/lib/api';
 import { fetchCurrentUser, logout as logoutSession } from '../features/auth/services/auth';
 
 const LOGIN_PATH = '/login';
@@ -316,6 +316,7 @@ export default function App() {
           setIsAuthenticated(true);
         } else {
           localStorage.removeItem('matrifix_user');
+          clearAuthToken();
           setUser({});
           setIsAuthenticated(false);
         }
@@ -324,6 +325,7 @@ export default function App() {
           return;
         }
         localStorage.removeItem('matrifix_user');
+        clearAuthToken();
         setUser({});
         setIsAuthenticated(false);
       } finally {
@@ -354,6 +356,7 @@ export default function App() {
       setUser({});
       setIsAuthenticated(false);
       localStorage.removeItem('matrifix_user');
+      clearAuthToken();
       navigate(LOGIN_PATH, true);
     };
 
@@ -381,6 +384,7 @@ export default function App() {
 
   const performLogout = useCallback(() => {
     localStorage.removeItem('matrifix_user');
+    clearAuthToken();
     setUser({});
     setIsAuthenticated(false);
     navigate(LOGIN_PATH, true);
