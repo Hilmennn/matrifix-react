@@ -340,6 +340,30 @@
   color: #123f30;
 }
 
+.stock-pid-table {
+  min-width: 780px;
+}
+
+.stock-draft-table {
+  min-width: 760px;
+}
+
+.stock-cell-check {
+  text-align: center;
+  width: 56px;
+}
+
+.stock-cell-check input {
+  width: 16px;
+  height: 16px;
+  accent-color: #0f7a4f;
+}
+
+.stock-inline-button {
+  padding: 6px 10px;
+  font-size: 12px;
+}
+
 .stock-empty {
   margin-top: 8px;
   color: #607a6f;
