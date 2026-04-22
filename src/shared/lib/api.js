@@ -62,6 +62,33 @@ function normalizeResponseData(payload) {
   }
 }
 
+function assertJsonLikeResponse(response, path) {
+  const payload = response?.data;
+  if (typeof payload !== 'string') {
+    return;
+  }
+
+  const trimmedPayload = payload
+    .replace(/^\uFEFF+/, '')
+    .replace(/^[\u200B-\u200D\u2060]+/, '')
+    .trim();
+
+  if (!trimmedPayload || /^[\[{]/.test(trimmedPayload)) {
+    return;
+  }
+
+  const contentType = String(response?.headers?.['content-type'] || '');
+  const looksLikeHtml = contentType.includes('text/html') || /<\/?[a-z][\s\S]*>/i.test(trimmedPayload);
+  const requestError = new Error(
+    looksLikeHtml
+      ? `Backend mengembalikan HTML untuk endpoint API ${path}. Pastikan route API Laravel aktif dan response-nya JSON.`
+      : `Backend mengembalikan response non-JSON untuk endpoint API ${path}: ${trimmedPayload.slice(0, 120)}`,
+  );
+  requestError.status = response?.status || 200;
+  requestError.payload = trimmedPayload;
+  throw requestError;
+}
+
 export const apiClient = axios.create({
   baseURL: API_BASE_URL,
   withCredentials: true,
@@ -129,8 +156,12 @@ export async function apiRequest(path, options = {}) {
       ...restOptions,
     });
 
+    assertJsonLikeResponse(response, path);
     return normalizeResponseData(response.data);
   } catch (error) {
+    if (error?.payload && error?.status) {
+      throw error;
+    }
     throw toRequestError(error, 'Sesi login Anda sudah berakhir. Silakan login kembali.', !skipUnauthorizedNotify);
   }
 }
