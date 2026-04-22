@@ -164,8 +164,8 @@ export default function LoginForm({ onLoginSuccess }) {
         if (meUser?.username) {
           user = meUser;
         }
-      } catch {
-        // Tetap pakai data user dari respons login jika /auth/me belum siap terbaca.
+      } catch (meError) {
+        throw new Error(meError?.message || 'Login berhasil, tetapi session backend belum terbaca. Periksa cookie Sanctum backend.');
       }
 
       const profileIncomplete = !user?.nama || !user?.role || user?.nama === user?.username || user?.role === 'User';
