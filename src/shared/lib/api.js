@@ -62,6 +62,11 @@ function normalizeResponseData(payload) {
   }
 }
 
+function isUnauthenticatedPayload(payload) {
+  const message = String(payload?.message || payload?.error || '').trim().toLowerCase();
+  return message === 'unauthenticated.' || message === 'unauthenticated';
+}
+
 function assertJsonLikeResponse(response, path) {
   const payload = response?.data;
   if (typeof payload !== 'string') {
@@ -157,7 +162,18 @@ export async function apiRequest(path, options = {}) {
     });
 
     assertJsonLikeResponse(response, path);
-    return normalizeResponseData(response.data);
+    const normalizedData = normalizeResponseData(response.data);
+    if (isUnauthenticatedPayload(normalizedData)) {
+      if (!skipUnauthorizedNotify) {
+        notifyUnauthorized();
+      }
+      const requestError = new Error('Sesi login Anda belum terbaca oleh backend. Silakan login kembali.');
+      requestError.status = 401;
+      requestError.payload = normalizedData;
+      throw requestError;
+    }
+
+    return normalizedData;
   } catch (error) {
     if (error?.payload && error?.status) {
       throw error;
