@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { fetchCurrentUser, login } from '../services/auth';
 import { getDataPenggunaDetail } from '../../revisi/services/revisi';
 import { getRevisiDashboard } from '../../dashboard/services/dashboard';
+import { persistAuthTokenFromPayload } from '../../../shared/lib/api';
 
 const LOGIN_ERROR_STORAGE_KEY = 'matrifix_login_error';
 
@@ -156,6 +157,7 @@ export default function LoginForm({ onLoginSuccess }) {
 
     try {
       const loginData = await login({ username, password });
+      persistAuthTokenFromPayload(loginData);
       let user = buildFallbackUser(username, pickLoginUser(loginData));
 
       try {
