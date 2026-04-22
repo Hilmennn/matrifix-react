@@ -3,6 +3,7 @@ import axios from 'axios';
 const API_BASE_URL = String(import.meta.env.VITE_API_BASE_URL || '/api').replace(/\/+$/, '');
 const SANCTUM_CSRF_URL = String(import.meta.env.VITE_SANCTUM_CSRF_ENDPOINT || '/sanctum/csrf-cookie').trim();
 const UNAUTHORIZED_EVENT = 'matrifix:unauthorized';
+const AUTH_TOKEN_STORAGE_KEY = 'matrifix_auth_token';
 
 function readCookie(name) {
   const escapedName = String(name || '').replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -26,6 +27,7 @@ function normalizeApiPath(path = '') {
 export function notifyUnauthorized() {
   try {
     localStorage.removeItem('matrifix_user');
+    localStorage.removeItem(AUTH_TOKEN_STORAGE_KEY);
   } catch {
     // no-op
   }
@@ -67,6 +69,45 @@ function isUnauthenticatedPayload(payload) {
   return message === 'unauthenticated.' || message === 'unauthenticated';
 }
 
+function readAuthToken() {
+  try {
+    return String(localStorage.getItem(AUTH_TOKEN_STORAGE_KEY) || '').trim();
+  } catch {
+    return '';
+  }
+}
+
+function pickAuthToken(payload = {}) {
+  const candidates = [
+    payload?.token,
+    payload?.access_token,
+    payload?.plainTextToken,
+    payload?.data?.token,
+    payload?.data?.access_token,
+    payload?.data?.plainTextToken,
+  ];
+
+  return String(candidates.find(Boolean) || '').trim();
+}
+
+export function persistAuthTokenFromPayload(payload = {}) {
+  const token = pickAuthToken(payload);
+  if (!token) {
+    return '';
+  }
+
+  localStorage.setItem(AUTH_TOKEN_STORAGE_KEY, token);
+  return token;
+}
+
+export function clearAuthToken() {
+  try {
+    localStorage.removeItem(AUTH_TOKEN_STORAGE_KEY);
+  } catch {
+    // no-op
+  }
+}
+
 function assertJsonLikeResponse(response, path) {
   const payload = response?.data;
   if (typeof payload !== 'string') {
@@ -104,6 +145,14 @@ export const apiClient = axios.create({
 });
 
 apiClient.interceptors.request.use((config) => {
+  const authToken = readAuthToken();
+  if (authToken && !config.headers?.Authorization) {
+    config.headers = {
+      ...config.headers,
+      Authorization: `Bearer ${authToken}`,
+    };
+  }
+
   const method = String(config.method || 'get').toLowerCase();
   if (['post', 'put', 'patch', 'delete'].includes(method)) {
     const xsrfToken = readCookie('XSRF-TOKEN');
