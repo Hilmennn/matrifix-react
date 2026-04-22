@@ -157,7 +157,10 @@ export default function LoginForm({ onLoginSuccess }) {
 
     try {
       const loginData = await login({ username, password });
-      persistAuthTokenFromPayload(loginData);
+      const authToken = persistAuthTokenFromPayload(loginData);
+      if (!authToken) {
+        throw new Error('Login berhasil, tetapi backend belum mengirim token autentikasi. Deploy update AuthController Laravel terlebih dahulu.');
+      }
       let user = buildFallbackUser(username, pickLoginUser(loginData));
 
       try {
