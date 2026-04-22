@@ -1,4 +1,4 @@
-import { apiRequest, ensureCsrfCookie } from '../../../shared/lib/api';
+import { apiRequest, clearAuthToken, ensureCsrfCookie } from '../../../shared/lib/api';
 
 function unwrapUserPayload(data) {
   const directUser = data?.user;
@@ -36,10 +36,14 @@ export async function login(payload) {
 }
 
 export async function logout() {
-  await ensureCsrfCookie();
-  return apiRequest('/auth/logout', {
-    method: 'POST',
-  });
+  try {
+    await ensureCsrfCookie();
+    return await apiRequest('/auth/logout', {
+      method: 'POST',
+    });
+  } finally {
+    clearAuthToken();
+  }
 }
 
 export async function fetchCurrentUser() {
